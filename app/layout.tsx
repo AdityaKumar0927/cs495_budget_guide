@@ -1,39 +1,43 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { RightSidebar } from './components/right-sidebar';
-import { WelcomeToast } from './components/welcome-toast';
-import { Toaster } from 'sonner';
-import { Suspense } from 'react';
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import Header from '@/components/ui/header'
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Next.js Mail',
-  description: 'An email client template using the Next.js App Router.',
-};
+  title: 'Budget Guide',
+  description: 'Plan and build your budget for studying abroad',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`bg-white text-gray-800 ${inter.className}`}>
-      <body className="flex h-screen">
-        <main className="flex-grow overflow-hidden">{children}</main>
-        <Suspense fallback={<RightSidebarSkeleton />}>
-          <RightSidebar userId={1} />
-        </Suspense>
-        <Toaster closeButton />
-        <WelcomeToast />
+    <html lang="en">
+      <body className={`${inter.className} min-h-screen bg-pink-50`}>
+        <Header/>
+        <main className="max-w-6xl mx-auto px-4 pt-24 pb-12">
+          {children}
+        </main>
+        <footer className="bg-[#8B3A3D] text-white py-8">
+          <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div className="text-2xl font-light tracking-tight mb-4 md:mb-0">BUDGET GUIDE</div>
+            <nav>
+              <ul className="flex flex-wrap justify-center space-x-4 md:space-x-8">
+                <li><a href="#" className="hover:text-pink-200 transition-colors font-light tracking-tight">Privacy Policy</a></li>
+                <li><a href="#" className="hover:text-pink-200 transition-colors font-light tracking-tight">Terms of Service</a></li>
+                <li><a href="#" className="hover:text-pink-200 transition-colors font-light tracking-tight">Contact Us</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div className="text-center mt-8 text-pink-200 font-light tracking-tight">
+            © 2024 Budget Guide. All rights reserved.
+          </div>
+        </footer>
       </body>
     </html>
-  );
-}
-
-function RightSidebarSkeleton() {
-  return (
-    <div className="hidden sm:flex flex-shrink-0 w-[350px] p-6 overflow-auto bg-neutral-50" />
-  );
+  )
 }
