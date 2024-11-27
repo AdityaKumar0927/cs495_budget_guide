@@ -34,13 +34,7 @@ export default function Home() {
             </button>
           </div>
         </section>
-
-        {/* Other sections remain unchanged */}
       </main>
-
-      <footer className="bg-[#8B3A3D] text-white mt-32 py-12">
-        {/* Footer content remains unchanged */}
-      </footer>
     </div>
   )
 }
